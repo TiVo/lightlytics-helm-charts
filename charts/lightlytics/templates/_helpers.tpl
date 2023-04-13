@@ -66,6 +66,7 @@ Extra Annotations
 {{- with .Values.extraAnnotations }}
 {{ toYaml . }}
 {{- end }}
+{{- end }}
 
 {{/*
 Selector labels
