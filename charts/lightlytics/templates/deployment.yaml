@@ -6,7 +6,7 @@ metadata:
   labels:
   {{- include "lightlytics.labels" . | nindent 4 }}
   annotations:
-  {{- include "extraAnnotations" . | nindent 4 }}
+  {{- include "extraAnnotations" . | indent 4 }}
 
 spec:
   replicas: {{ .Values.lightlytics.replicas }}
