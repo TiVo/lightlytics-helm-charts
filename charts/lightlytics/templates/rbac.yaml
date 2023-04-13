@@ -81,8 +81,8 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
   {{- include "lightlytics.labels" . | nindent 4 }}
-  {{- with .Values.lightlytics.serviceAccount.annotations }}
   annotations:
+  {{- with .Values.lightlytics.serviceAccount.annotations }}
   {{- toYaml . | nindent 4 }}
   {{- end }}
   {{- include "extraAnnotations" . | nindent 4 }}
