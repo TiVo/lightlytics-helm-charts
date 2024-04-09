@@ -60,11 +60,29 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
+User labels
+*/}}
+{{- define "user.labels" -}}
+{{- with .Values.userLabels }}
+{{ toYaml .}}
+{{- end }}
+{{- end }}
+
+{{/*
 Selector labels
 */}}
 {{- define "lightlytics.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "lightlytics.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+User annotations
+*/}}
+{{- define "user.annotations" -}}
+{{- with .Values.userAnnotations }}
+{{ toYaml .}}
+{{- end }}
 {{- end }}
 
 {{/*

@@ -10,6 +10,10 @@ fullnameOverride:  # ""
 
 registry: public.ecr.aws/f1v0s3d7
 
+userLabels: {}
+
+userAnnotations: {}
+
 lightlytics:
   #lightlytics.apiToken --  Lightlytics API token for your Kubernetes cluster
   #ref :
