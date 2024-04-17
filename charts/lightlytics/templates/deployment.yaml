@@ -6,6 +6,13 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
   {{- include "lightlytics.labels" . | nindent 4 }}
+  {{- if .Values.userLabels }}
+  {{- include "user.labels" . | indent 4 }}
+  {{- end }}
+  {{- if .Values.userAnnotations }}
+  annotations:
+  {{- include "user.annotations" . | indent 4 }}
+  {{- end }}
 spec:
   replicas: {{ .Values.lightlytics.replicas }}
   selector:
@@ -64,15 +71,6 @@ spec:
                   key: api-key
             - name: LIGHTLYTICS_API_URL
               value: {{ $.Values.lightlytics.apiUrl | quote }}
-
-            - name: ENABLE_POD_PROCESSES
-              value: {{ $.Values.lightlytics.process_discovery_containers.enabled | quote }}
-
-            - name: POD_PROCESSES_SERVICE
-              value: {{ template "lightlytics.fullname" $}}-process-discovery
-
-            - name: POD_PROCESSES_PORT
-              value: "8080"
 
             - name: FULL_SCAN_SCHEDULE_SECONDS
               value: {{ $.Values.lightlytics.fullScanScheduleSeconds | quote }}
